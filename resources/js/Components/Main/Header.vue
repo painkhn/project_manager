@@ -53,7 +53,7 @@ const components: { title: string, href: string, description: string }[] = [
 </script>
 
 <template>
-    <header class="w-full h-auto shadow bg-white dark:bg-zinc-950">
+    <header class="w-full h-auto shadow bg-white dark:bg-zinc-900">
         <div class="max-w-7xl w-full py-5 mx-auto my-0">
             <div class="flex justify-between items-center">
                 <div class="flex gap-5">

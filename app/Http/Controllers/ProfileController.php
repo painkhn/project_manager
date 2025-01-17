@@ -17,6 +17,16 @@ class ProfileController extends Controller
     {
         return Inertia::render('Profile/Index');
     }
+
+    public function projects()
+    {
+        return Inertia::render('Profile/Projects');
+    }
+
+    public function schedule()
+    {
+        return Inertia::render('Profile/Schedule');
+    }
     /**
      * Display the user's profile form.
      */

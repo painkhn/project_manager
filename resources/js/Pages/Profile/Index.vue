@@ -1,51 +1,66 @@
 <script setup lang="ts">
 import Layout from '@/Layouts/MainLayout.vue'
 import { Head, Link } from '@inertiajs/vue3';
-import { Edit, LayoutDashboard, PanelLeft } from 'lucide-vue-next';
+import { Calendar, Edit, LayoutDashboard, List, PanelLeft } from 'lucide-vue-next';
+import ProfileLayout from '@/Layouts/ProfileLayout.vue';
 </script>
 
 <template>
 
     <Head title="Профиль" />
     <Layout>
-        <div class="dark:bg-zinc-950 bg-white p-10 shadow">
-            <div class="w-1/4 border-r dark:border-white border-zinc-400 pr-10 flex flex-col items-center gap-5">
-                <img src="/img/avatar_default.jpg" alt="" class="rounded-full w-40">
-                <div class="flex flex-col gap-2 items-center">
-                    <p class="font-semibold text-2xl">
-                        {{ $page.props.auth.user.name }}
-                    </p>
-                    <p class="font-semibold text-lg">
-                        {{ $page.props.auth.user.email }}
-                    </p>
-                </div>
-                <ul class="flex flex-col gap-2 items-start">
-                    <li>
-                        <Link href="#!" class="text-lg font-semibold flex items-center gap-2">
-                        <LayoutDashboard />
-                        Панель управления
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="#!" class="text-lg font-semibold flex items-center gap-2">
-                        <LayoutDashboard />
-                        Панель управления
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="#!" class="text-lg font-semibold flex items-center gap-2">
-                        <LayoutDashboard />
-                        Панель управления
-                        </Link>
-                    </li>
-                    <li>
-                        <Link href="#!" class="text-lg font-semibold flex items-center gap-2">
-                        <Edit />
-                        Редактировать
-                        </Link>
-                    </li>
-                </ul>
+        <ProfileLayout>
+            <h1 class="mb-5 text-2xl font-semibold">
+                Панель управления
+            </h1>
+            <div class="grid grid-cols-3">
+                <a href="#!"
+                    class="w-full h-[150px] overflow-hidden p-5 dark:bg-zinc-800 border dark:border-0 rounded-2xl relative transition-all hover:scale-105">
+                    <h2 class="text-2xl font-semibold mb-2.5">
+                        Всего проектов: 10
+                    </h2>
+                    <ul class="flex flex-col gap-1 list-disc pl-5">
+                        <li>
+                            <p>
+                                Название проекта
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Название проекта
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Название проекта
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Название проекта
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Название проекта
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Название проекта
+                            </p>
+                        </li>
+                        <li>
+                            <p>
+                                Название проекта
+                            </p>
+                        </li>
+                    </ul>
+                    <div
+                        class="absolute bottom-0 left-0 w-full h-5 rounded-b-2xl bg-gradient-to-t dark:from-black/35 from-black/10 to-transparent z-20">
+                    </div>
+                </a>
             </div>
-        </div>
+        </ProfileLayout>
     </Layout>
 </template>
