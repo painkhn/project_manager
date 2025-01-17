@@ -8,7 +8,7 @@ import ProfileLayout from '@/Layouts/ProfileLayout.vue';
     <Layout>
         <ProfileLayout>
             <h1 class="mb-5 text-2xl font-semibold">
-                Список проектов
+                Панель управления
             </h1>
         </ProfileLayout>
     </Layout>
