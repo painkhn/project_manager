@@ -15,7 +15,7 @@ defineProps<{
 
 <template>
 
-    <Head title="Profile" />
+    <Head title="Редактировать профиль" />
 
     <Layout>
         <ProfileLayout>
