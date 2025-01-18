@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Project;
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
@@ -20,7 +21,12 @@ class ProfileController extends Controller
 
     public function projects()
     {
-        return Inertia::render('Profile/Projects');
+        $user = Auth::user();
+        $projects = Project::with('user')->where('user_id', $user->id)->get();
+        // dd($projects);
+        return Inertia::render('Profile/Projects', [
+            'projects' => $projects,
+        ]);
     }
 
     public function schedule()

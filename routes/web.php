@@ -24,6 +24,7 @@ Route::middleware('auth')->group(function () {
     });
     Route::controller(ProjectController::class)->group(function() {
         Route::get('/project/create', 'create')->name('project.create');
+        Route::post('/project/store', 'store')->name('project.store');
     });
 });
 

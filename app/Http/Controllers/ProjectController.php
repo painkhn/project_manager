@@ -6,6 +6,7 @@ use App\Models\Project;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Inertia\Inertia;
+use Auth;
 
 class ProjectController extends Controller
 {
@@ -30,7 +31,17 @@ class ProjectController extends Controller
      */
     public function store(StoreProjectRequest $request)
     {
-        //
+        $user = Auth::user();
+
+        $project = Project::create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'user_id' => $user->id,
+            'start_date' => $request->start_date,
+            'end_date' => $request->end_date,
+        ]);
+
+        return redirect()->back();
     }
 
     /**

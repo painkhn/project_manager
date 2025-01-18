@@ -61,17 +61,20 @@ const components: { title: string, href: string, description: string }[] = [
                     <NavigationMenu>
                         <NavigationMenuList>
                             <NavigationMenuItem>
-                                <NavigationMenuLink :href="route('project.create')" :class="navigationMenuTriggerStyle()">
+                                <NavigationMenuLink class="bg-transparent" :href="route('project.create')"
+                                    :class="navigationMenuTriggerStyle()">
                                     Создать проект
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <NavigationMenuLink href="/docs/introduction" :class="navigationMenuTriggerStyle()">
+                                <NavigationMenuLink class="bg-transparent" href="/docs/introduction"
+                                    :class="navigationMenuTriggerStyle()">
                                     Documentation
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
                             <NavigationMenuItem>
-                                <NavigationMenuLink href="/docs/introduction" :class="navigationMenuTriggerStyle()">
+                                <NavigationMenuLink class="bg-transparent" href="/docs/introduction"
+                                    :class="navigationMenuTriggerStyle()">
                                     Documentation
                                 </NavigationMenuLink>
                             </NavigationMenuItem>
