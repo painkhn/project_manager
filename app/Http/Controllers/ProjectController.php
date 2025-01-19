@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Models\{ Project, Task };
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use Inertia\Inertia;
@@ -17,10 +17,11 @@ class ProjectController extends Controller
     {
         // $user = Auth::user();
         $project = Project::with('user')->where('id', $id)->first();
-
+        $tasks = Task::with('user')->where('project_id', $project->id)->get();
         return Inertia::render('Project/Index', [
             // 'user' => $user,
-            'project' => $project
+            'project' => $project,
+            'tasks' => $tasks,
         ]);
     }
 

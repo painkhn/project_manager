@@ -14,6 +14,17 @@ export interface Project {
     end_date: string;
 }
 
+export interface Task {
+    id: number;
+    title: string;
+    description: string;
+    project: Project;
+    user: User;
+    start_date: string;
+    end_date: string;
+    status: string;
+}
+
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
 > = T & {

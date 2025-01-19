@@ -23,7 +23,7 @@ import {
 import Button from '@/Components/ui/button/Button.vue';
 
 const props = defineProps<{
-    projects: Project[] | null
+    projects?: Project[] | null
     user: User
 }>()
 
@@ -51,7 +51,7 @@ const props = defineProps<{
                         </TableHead> -->
                     </TableRow>
                 </TableHeader>
-                <TableBody>
+                <TableBody v-if="(props.projects as Project[])?.length > 0">
                     <TableRow v-for="project in projects" :key="project.id">
                         <TableCell class="font-medium overflow-hidden line-clamp-1">
                             <Link :href="route('project.index', { id: project.id })" class="block leading-[25px]">
@@ -67,15 +67,24 @@ const props = defineProps<{
                                 </PopoverTrigger>
                                 <PopoverContent class="w-14 text-right">
                                     <div class="space-y-4">
-                                        <Button>
-                                            <Edit class="text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-all" />
-                                        </Button>
-                                        <Button>
-                                            <Trash class="text-red-400 hover:text-red-500 dark:hover:text-red-300 transition-all" />
-                                        </Button>
+                                        <button>
+                                            <Edit
+                                                class="text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-all" />
+                                        </button>
+                                        <button>
+                                            <Trash
+                                                class="text-red-400 hover:text-red-500 dark:hover:text-red-300 transition-all" />
+                                        </button>
                                     </div>
                                 </PopoverContent>
                             </Popover>
+                        </TableCell>
+                    </TableRow>
+                </TableBody>
+                <TableBody v-else>
+                    <TableRow>
+                        <TableCell class="font-medium overflow-hidden">
+                            Не найдено ни одного проекта
                         </TableCell>
                     </TableRow>
                 </TableBody>

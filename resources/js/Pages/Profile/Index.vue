@@ -32,7 +32,7 @@ onMounted(() => {
                     </h2>
                     <ul class="flex flex-col gap-1 list-disc pl-5">
                         <li v-for="(project, index) in props.projects" :key="index">
-                            <p>
+                            <p class="line-clamp-1">
                                 {{ project.title }}
                             </p>
                         </li>
