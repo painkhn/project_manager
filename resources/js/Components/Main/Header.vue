@@ -89,7 +89,7 @@ const components: { title: string, href: string, description: string }[] = [
                         </Link>
                     </div>
                     <div v-else>
-                        <Link :href="route('profile.index')"
+                        <Link :href="route('profile.index', { id: $page.props.auth.user.id })"
                             class="px-4 py-2 rounded-md hover:dark:bg-white/10 hover:bg-black/10 font-semibold transition-all">
                         {{ $page.props.auth.user.name }}
                         </Link>

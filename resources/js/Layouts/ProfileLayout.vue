@@ -1,6 +1,16 @@
 <script setup lang="ts">
+import { User } from '@/types';
 import { Head, Link } from '@inertiajs/vue3';
 import { Calendar, Edit, LayoutDashboard, List, PanelLeft } from 'lucide-vue-next';
+import { DefineProps, onMounted } from 'vue';
+
+const props = defineProps<{
+    user: User
+}>()
+
+onMounted(() => {
+    // console.log(props.user)
+})
 </script>
 
 <template>
@@ -9,33 +19,33 @@ import { Calendar, Edit, LayoutDashboard, List, PanelLeft } from 'lucide-vue-nex
             <img src="/img/avatar_default.jpg" alt="" class="rounded-full w-40">
             <div class="flex flex-col gap-2 items-center">
                 <p class="font-semibold text-2xl">
-                    {{ $page.props.auth.user.name }}
+                    {{ props.user.name }}
                 </p>
                 <p class="font-semibold text-lg">
-                    {{ $page.props.auth.user.email }}
+                    {{ props.user.email }}
                 </p>
             </div>
             <ul class="flex flex-col gap-4 items-start">
                 <li>
-                    <Link :href="route('profile.index')" class="text-lg font-semibold flex items-center gap-2">
+                    <Link :href="route('profile.index', { id: props.user.id })" class="text-lg font-semibold flex items-center gap-2">
                     <LayoutDashboard />
                     Панель управления
                     </Link>
                 </li>
                 <li>
-                    <Link :href="route('profile.projects')" class="text-lg font-semibold flex items-center gap-2">
+                    <Link :href="route('profile.projects', { id: props.user.id })" class="text-lg font-semibold flex items-center gap-2">
                     <List />
                     Список проектов
                     </Link>
                 </li>
                 <li>
-                    <Link :href="route('profile.schedule')" class="text-lg font-semibold flex items-center gap-2">
+                    <Link :href="route('profile.schedule', { id: props.user.id })" class="text-lg font-semibold flex items-center gap-2">
                     <Calendar />
                     Расписание
                     </Link>
                 </li>
                 <li>
-                    <Link :href="route('profile.edit')" class="text-lg font-semibold flex items-center gap-2">
+                    <Link :href="route('profile.edit', { id: props.user.id })" class="text-lg font-semibold flex items-center gap-2">
                     <Edit />
                     Редактировать
                     </Link>

@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Project;
+use App\Models\{ Project, User };
 use App\Http\Requests\ProfileUpdateRequest;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Http\RedirectResponse;
@@ -14,33 +14,47 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function index($id)
     {
-        return Inertia::render('Profile/Index');
-    }
-
-    public function projects()
-    {
-        $user = Auth::user();
+        $user = User::where('id', $id)->first();
         $projects = Project::with('user')->where('user_id', $user->id)->get();
-        // dd($projects);
-        return Inertia::render('Profile/Projects', [
+        return Inertia::render('Profile/Index', [
+            'user' => $user,
             'projects' => $projects,
         ]);
     }
 
-    public function schedule()
+    public function projects($id)
     {
-        return Inertia::render('Profile/Schedule');
+        // $user = Auth::user();
+        $user = User::where('id', $id)->first();
+        $projects = Project::with('user')->where('user_id', $user->id)->get();
+        // dd($projects);
+        return Inertia::render('Profile/Projects', [
+            'projects' => $projects,
+            'user' => $user
+        ]);
+    }
+
+    public function schedule($id)
+    {
+        $user = User::where('id', $id)->first();
+        $projects = Project::with('user')->where('user_id', $user->id)->get();
+        return Inertia::render('Profile/Schedule', [
+            'user' => $user,
+            'projects' => $projects,
+        ]);
     }
     /**
      * Display the user's profile form.
      */
-    public function edit(Request $request): Response
+    public function edit(Request $request, $id): Response
     {
+        $user = User::where('id', $id)->first();
         return Inertia::render('Profile/Edit', [
             'mustVerifyEmail' => $request->user() instanceof MustVerifyEmail,
             'status' => session('status'),
+            'user' => $user
         ]);
     }
 

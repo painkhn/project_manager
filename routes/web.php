@@ -15,16 +15,17 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::controller(ProfileController::class)->group(function() {
-        Route::get('/profile', 'index')->name('profile.index');
-        Route::get('/profile/projects', 'projects')->name('profile.projects');
-        Route::get('/profile/schedule', 'schedule')->name('profile.schedule');
-        Route::get('/profile/edit', 'edit')->name('profile.edit');
         Route::get('/profile/update', 'update')->name('profile.update');
         Route::get('/profile/destroy', 'destroy')->name('profile.destroy');
+        Route::get('/profile/edit/{id}', 'edit')->name('profile.edit');
+        Route::get('/profile/schedule/{id}', 'schedule')->name('profile.schedule');
+        Route::get('/profile/projects/{id}', 'projects')->name('profile.projects');
+        Route::get('/profile/{id}', 'index')->name('profile.index');
     });
     Route::controller(ProjectController::class)->group(function() {
         Route::get('/project/create', 'create')->name('project.create');
         Route::post('/project/store', 'store')->name('project.store');
+        Route::get('/project/{id}', 'index')->name('project.index');
     });
 });
 

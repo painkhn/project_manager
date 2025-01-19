@@ -6,10 +6,12 @@ import UpdateProfileInformationForm from './Partials/UpdateProfileInformationFor
 import { Head } from '@inertiajs/vue3';
 import ProfileLayout from '@/Layouts/ProfileLayout.vue';
 import Layout from '@/Layouts/MainLayout.vue'
+import { User } from '@/types';
 
-defineProps<{
+const props = defineProps<{
     mustVerifyEmail?: boolean;
     status?: string;
+    user: User
 }>();
 </script>
 
@@ -18,7 +20,7 @@ defineProps<{
     <Head title="Редактировать профиль" />
 
     <Layout>
-        <ProfileLayout>
+        <ProfileLayout :user="props.user">
             <h1 class="mb-5 text-2xl font-semibold">
                 Список проектов
             </h1>

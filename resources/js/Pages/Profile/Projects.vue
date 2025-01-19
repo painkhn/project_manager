@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import Layout from '@/Layouts/MainLayout.vue'
 import ProfileLayout from '@/Layouts/ProfileLayout.vue';
-import { Head } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import { DefineProps } from 'vue';
-import { Project } from '@/types';
+import { Project, User } from '@/types';
 import {
     Table,
     TableBody,
@@ -13,10 +13,18 @@ import {
     TableHeader,
     TableRow,
 } from '@/Components/ui/table'
-import { Ellipsis } from 'lucide-vue-next';
+import { Edit, Ellipsis, Trash } from 'lucide-vue-next';
+
+import {
+    Popover,
+    PopoverContent,
+    PopoverTrigger,
+} from '@/Components/ui/popover'
+import Button from '@/Components/ui/button/Button.vue';
 
 const props = defineProps<{
     projects: Project[] | null
+    user: User
 }>()
 
 </script>
@@ -25,7 +33,7 @@ const props = defineProps<{
 
     <Head title="Список проектов" />
     <Layout>
-        <ProfileLayout>
+        <ProfileLayout :user="props.user">
             <h1 class="mb-5 text-2xl font-semibold">
                 Список проектов
             </h1>
@@ -33,25 +41,41 @@ const props = defineProps<{
                 <TableCaption>A list of your recent invoices.</TableCaption>
                 <TableHeader>
                     <TableRow>
-                        <TableHead class="w-[150px]">
+                        <TableHead class="w-[50%]">
                             Название проекта
                         </TableHead>
-                        <TableHead class="text-right">Начало проекта</TableHead>
-                        <TableHead class="text-right">Окончание проекта</TableHead>
-                        <TableHead class="text-right">
-                            Amount
-                        </TableHead>
+                        <TableHead class="ml-auto w-[30%] text-right">Начало проекта</TableHead>
+                        <TableHead class="w-full text-right">Окончание проекта</TableHead>
+                        <!-- <TableHead class="text-right">
+                            
+                        </TableHead> -->
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     <TableRow v-for="project in projects" :key="project.id">
-                        <TableCell class="font-medium">
+                        <TableCell class="font-medium overflow-hidden line-clamp-1">
+                            <Link :href="route('project.index', { id: project.id })" class="block leading-[25px]">
                             {{ project.title }}
+                            </Link>
                         </TableCell>
                         <TableCell class="text-right">{{ project.start_date }}</TableCell>
                         <TableCell class="text-right">{{ project.end_date }}</TableCell>
                         <TableCell class="text-right">
-                            <Ellipsis class="inline" />
+                            <Popover>
+                                <PopoverTrigger>
+                                    <Ellipsis class="inline" />
+                                </PopoverTrigger>
+                                <PopoverContent class="w-14 text-right">
+                                    <div class="space-y-4">
+                                        <Button>
+                                            <Edit class="text-blue-400 hover:text-blue-500 dark:hover:text-blue-300 transition-all" />
+                                        </Button>
+                                        <Button>
+                                            <Trash class="text-red-400 hover:text-red-500 dark:hover:text-red-300 transition-all" />
+                                        </Button>
+                                    </div>
+                                </PopoverContent>
+                            </Popover>
                         </TableCell>
                     </TableRow>
                 </TableBody>
